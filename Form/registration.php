@@ -1,104 +1,80 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+    if (isset($_POST['registerBtn'])) {
+        // Registration code
+        $username = $_POST['register_username'];
+        $f_name = $_POST['register_fname'];
+        $l_name = $_POST['register_lname'];
+        $email = $_POST['register_email'];
+        $password = $_POST['register_password'];
+        $agree = isset($_POST['register_agree']) ? 1 : 0; // Checkbox value
 
-include('db_connection.php');
+        // Establish Connection
+        $db_host = "localhost"; // Change this to your database host
+        $db_user = "root";      // Change this to your database username
+        $db_pass = "";          // Change this to your database password
+        $db_name = "register";  // Change this to your database name
 
-$username = $email = $password = $agree = $login_username = $login_password = "";
-$usernameErr = $emailErr = $passwordErr = $agreeErr = $login_usernameErr = $login_passwordErr = $fnameErr = $lnameErr = "";
+        // Create a connection to the database
+        $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (isset($_POST['registerBtn'])) {
-    // Registration form processing
-    if (empty($_POST["register_username"])) {
-      $usernameErr = "Username is required";
-    } else {
-      $username = $_POST["register_username"];
-    }
-
-    // New validation code
-    if (empty($_POST["register_fname"])) {
-      $fnameErr = "First Name is required";
-    } else {
-      $first_name = $_POST["register_fname"];
-    }
-
-    if (empty($_POST["register_lname"])) {
-      $lnameErr = "Last Name is required";
-    } else {
-      $last_name = $_POST["register_lname"];
-    }
-
-    if (empty($_POST["register_email"])) {
-      $emailErr = "Email is required";
-    } else {
-      $email = $_POST["register_email"];
-    }
-
-    if (empty($_POST["register_password"])) {
-      $passwordErr = "Password is required";
-    } else {
-      $password = $_POST["register_password"];
-      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    }
-
-    if (!isset($_POST["register_agree"])) {
-      $agreeErr = "You must agree to the terms and conditions";
-    } else {
-      $agree = "Agreed";
-    }
-
-    if (empty($usernameErr) && empty($emailErr) && empty($passwordErr) && empty($agreeErr) && empty($fnameErr) && empty($lnameErr)) {
-      $conn = connectDB();
-      $sql = "INSERT INTO users (username, first_name, last_name, email, password, agree) VALUES (?, ?, ?, ?, ?, ?)";
-      $stmt = $conn->prepare($sql);
-      $stmt->bind_param("ssssss", $username, $first_name, $last_name, $email, $hashedPassword, $agree);
-
-      if ($stmt->execute()) {
-        header("Location: registration_success.php");
-        exit();
-      } else {
-        echo "Error: " . $conn->error;
-      }
-
-      $conn->close();
-    }
-  } elseif (isset($_POST['loginBtn'])) {
-    // Login form processing
-    if (empty($_POST["login_username"])) {
-      $login_usernameErr = "Username is required";
-    } else {
-      $login_username = $_POST["login_username"];
-    }
-
-    if (empty($_POST["login_password"])) {
-      $login_passwordErr = "Password is required";
-    } else {
-      $login_password = $_POST["login_password"];
-    }
-
-    if (empty($login_usernameErr) && empty($login_passwordErr)) {
-     
-      $sql = "SELECT * FROM users WHERE username = ?";
-      $stmt = $conn->prepare($sql);
-      $stmt->bind_param("s", $login_username);
-      $stmt->execute();
-      $result = $stmt->get_result();
-
-      if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        if (password_verify($login_password, $row['password'])) {
-          session_start();
-          $_SESSION['username'] = $row['username'];
-          header("Location: logged_in.php");
-          exit();
+        // Check the connection
+        if (mysqli_connect_errno()) {
+            echo "Failed to connect!";
+            exit();
         } else {
-          $login_passwordErr = "Incorrect password";
-        }
-      } else {
-        $login_usernameErr = "Username not found";
-      }
+            // Hash the password before storing it in the database
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-      $conn->close();
+            // Insert user data into the database
+            $sql = "INSERT INTO `users` (username, first_name, last_name, email, password, agree) VALUES ('$username', '$f_name', '$l_name', '$email', '$hashed_password', '$agree')";
+            $result = mysqli_query($conn, $sql);
+            if ($result) {
+                echo "Registration Successful";
+            } else {
+                die(mysqli_error($conn));
+            }
+        }
+    } elseif (isset($_POST['loginBtn'])) {
+        // Login code
+        $login_username = $_POST['login_username'];
+        $login_password = $_POST['login_password'];
+
+        // Establish Connection
+        $db_host = "localhost"; // Change this to your database host
+        $db_user = "root";      // Change this to your database username
+        $db_pass = "";          // Change this to your database password
+        $db_name = "register";  // Change this to your database name
+
+        // Create a connection to the database
+        $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+
+        // Check the connection
+        if (mysqli_connect_errno()) {
+            echo "Failed to connect!";
+            exit();
+        } else {
+            // Query the database to check if the user exists
+            $sql = "SELECT * FROM `users` WHERE username='$login_username' LIMIT 1";
+            $login_result = mysqli_query($conn, $sql);
+
+            if ($login_result && mysqli_num_rows($login_result) == 1) {
+                // User found, now check the password
+                $user_data = mysqli_fetch_assoc($login_result);
+                $stored_password = $user_data['password'];
+
+                if (password_verify($login_password, $stored_password)) {
+                    // Successful login
+                    echo "Login Successful";
+                } else {
+                    echo "Invalid password";
+                }
+            } else {
+                echo "Invalid username";
+            }
+        }
     }
-  }
 }
+?>
+
 

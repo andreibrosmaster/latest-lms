@@ -66,6 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 if (password_verify($login_password, $stored_password)) {
                     // Successful login
                     echo "Login Successful";
+                    header("Location: lms/lms.php");
+                    exit();
                 } else {
                     echo "Invalid password";
                 }
@@ -73,8 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 echo "Invalid username";
             }
         }
+
+        mysqli_close($conn);
     }
 }
 ?>
-
-<!-- Your HTML form code for registration and login here -->
