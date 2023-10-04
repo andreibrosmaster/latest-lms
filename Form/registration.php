@@ -66,15 +66,19 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 if (password_verify($login_password, $stored_password)) {
                     // Successful login
                     echo "Login Successful";
+                    header("Location: lms/lms.php");
+                    exit();
                 } else {
-                    echo "Invalid password";
+                    echo "<script>alert('Invalid password'); window.location.href = 'index.php';</script>";
+                    exit();
                 }
             } else {
-                echo "Invalid username";
+                echo "<script>alert('Invalid username'); window.location.href = 'index.php';</script>";
+                exit();
             }
         }
+
+        mysqli_close($conn);
     }
 }
 ?>
-
-

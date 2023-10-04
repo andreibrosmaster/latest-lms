@@ -35,6 +35,8 @@ body, html {
   background: #fff;
   padding: 5px;
   overflow: hidden;
+  opacity: 0.8;
+  border-radius: 5%;
 
 }
 

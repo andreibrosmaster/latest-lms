@@ -30,7 +30,11 @@
     <ul class="menu">
       <li><a href="#"><i class="fas fa-home"></i></a></li>
       <li><a href="#"><i class="fas fa-calendar"></i></a></li>
-      <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+      <li>
+        <form action="logout.php" method="post">
+          <button type="submit" name="logoutBtn"><i class="fas fa-sign-out-alt"></i></button>
+        </form>
+      </li>
     </ul>
   </div>
 
