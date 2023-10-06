@@ -250,8 +250,8 @@ header
 
 .background-header {
   background-color: #ffffff!important;
-  height: 80px!important;
-  position: fixed!important;
+  height: 10px!important;
+  position: relative!important;
   top: 0!important;
   left: 0;
   right: 0;
@@ -292,18 +292,18 @@ header
   font-family: "Times New Roman", Times, serif;
 }
 
-.header-area .main-nav {
-  min-height: 80px;
+/* .header-area .main-nav {
+  min-height: 1px !important;
   background: transparent;
-}
+} */
 
 .header-area .main-nav .logo {
   line-height: 100px;
   color: #fff;
-  font-size: 28px;
+  font-size: 15px;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   float: left;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
@@ -318,7 +318,7 @@ header
 }
 
 .background-header .nav {
-  margin-top: 20px !important;
+  margin-top: 1px !important;
 }
 
 .header-area .main-nav .nav {
@@ -385,7 +385,7 @@ header
   color: #fff;
   position: absolute;
   right: 5px;
-  top: 12px;
+  top: 1px;
 }
 
 .background-header .main-nav .nav li.has-sub:after {
@@ -563,11 +563,11 @@ header
 }
 
 .header-area.header-sticky {
-  min-height: 80px;
+  min-height: 50px;
 }
 
 .header-area .nav {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .header-area.header-sticky .nav li a.active {
@@ -599,7 +599,7 @@ header
   .header-area {
     background-color: #f7f7f7;
     padding: 0px 15px;
-    height: 100px;
+    height: 50px;
     box-shadow: none;
     text-align: center;
   }

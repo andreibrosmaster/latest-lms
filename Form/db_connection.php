@@ -24,25 +24,31 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             exit();
         } else {
             // Check if the username or email already exists in the database
-            $check_query = "SELECT * FROM `users` WHERE username='$username' OR email='$email'";
-            $check_result = mysqli_query($conn, $check_query);
 
-            if (mysqli_num_rows($check_result) > 0) {
-                echo "<script>alert('Username or email already exists'); window.location.href = 'index.php';</script>";
+            if($agree != 1){
+                echo "<script>alert('Please agree to the terms and conditions'); window.location.href = 'index.php';</script>";
                 exit();
-            } else {
-                // Hash the password before storing it in the database
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                // Insert user data into the database
-                $insert_query = "INSERT INTO `users` (username, first_name, last_name, email, password, agree) VALUES ('$username', '$f_name', '$l_name', '$email', '$hashed_password', '$agree')";
-                $result = mysqli_query($conn, $insert_query);
-                if ($result) {
-                    echo "Registration Successful";
+            } else{ $check_query = "SELECT * FROM `users` WHERE username='$username' OR email='$email'";
+                $check_result = mysqli_query($conn, $check_query);
+    
+                if (mysqli_num_rows($check_result) > 0) {
+                    echo "<script>alert('Username or email already exists'); window.location.href = 'index.php';</script>";
+                    exit();
                 } else {
-                    die(mysqli_error($conn));
-                }
-            }
+                    // Hash the password before storing it in the database
+                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    
+                    // Insert user data into the database
+                    $insert_query = "INSERT INTO `users` (username, first_name, last_name, email, password, agree) VALUES ('$username', '$f_name', '$l_name', '$email', '$hashed_password', '$agree')";
+                    $result = mysqli_query($conn, $insert_query);
+                    if ($result) {
+                        echo "Registration Successful";
+                    } else {
+                        die(mysqli_error($conn));
+                    }
+                } }
+           
         }
     } elseif (isset($_POST['loginBtn'])) {
         // Login code
@@ -78,11 +84,11 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     header("Location: lms/lms.php");
                     exit();
                 } else {
-                    echo "<script>alert('Invalid password'); window.location.href = 'login.php';</script>";
+                    echo "<script>alert('Invalid password'); window.location.href = 'index.php';</script>";
                     exit();
                 }
             } else {
-                echo "<script>alert('Invalid username'); window.location.href = 'login.php';</script>";
+                echo "<script>alert('Invalid username'); window.location.href = 'index.php';</script>";
                 exit();
             }
         }

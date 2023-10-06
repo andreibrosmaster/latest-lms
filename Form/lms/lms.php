@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +11,7 @@
 <body>
    
 
-<div class="header">
+<div class="header" id="header">
     <div class="logo">
       <!-- Place your logo here -->
       <img src="logo-ncu.png" alt="" class="logo-ncu">    
