@@ -1,6 +1,6 @@
 <?php
-include('connection.php');
-
+session_start();
+include 'hello_user.php'; // Include the file that sets $username
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ include('connection.php');
 
 
     <div class="user-greeting">
-      Hello, User
+    <p>Hello, <span id="username"><?php echo $username; ?></span></p>
     </div>
   </div>
   <div class="sidebar">

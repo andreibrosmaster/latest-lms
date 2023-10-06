@@ -43,7 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     $insert_query = "INSERT INTO `users` (username, first_name, last_name, email, password, agree) VALUES ('$username', '$f_name', '$l_name', '$email', '$hashed_password', '$agree')";
                     $result = mysqli_query($conn, $insert_query);
                     if ($result) {
-                        echo "Registration Successful";
+                        echo "<script>alert('Registration Succesful!'); window.location.href = 'index.php';</script>";
+                    exit();
                     } else {
                         die(mysqli_error($conn));
                     }
@@ -80,9 +81,16 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
                 if (password_verify($login_password, $stored_password)) {
                     // Successful login
-                    echo "Login Successful";
-                    header("Location: lms/lms.php");
-                    exit();
+                    if ($user_data['username'] === 'superadmin') {
+
+                        header("Location: lms/dashboard.php");
+                        exit();
+                    } else{
+                        echo "Login Successful";
+                        header("Location: lms/lms.php");
+                        exit();
+                    }
+                   
                 } else {
                     echo "<script>alert('Invalid password'); window.location.href = 'index.php';</script>";
                     exit();

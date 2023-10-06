@@ -1,3 +1,9 @@
+
+<?php
+session_start();
+include 'hello_user.php'; // Include the file that sets $username
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +27,7 @@
 
 
     <div class="user-greeting">
-      Hello, User
+    <p>Hello, <span id="username"><?php echo $usernameForHTML; ?></span></p>
     </div>
   </div>
   <div class="sidebar">
