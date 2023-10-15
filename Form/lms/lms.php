@@ -1,9 +1,4 @@
 
-<?php
-session_start();
-include 'hello_user.php'; // Include the file that sets $username
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +8,7 @@ include 'hello_user.php'; // Include the file that sets $username
   <link rel="stylesheet" href="lms.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+  <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
    
@@ -25,17 +21,18 @@ include 'hello_user.php'; // Include the file that sets $username
     </div>
 
 
-
+   <!--USERNAME SHOW---->
     <div class="user-greeting">
-    <p>Hello, <span id="username"><?php echo $usernameForHTML; ?></span></p>
+    <p>Hello, Student<span id="username"></span></p>
     </div>
+
   </div>
   <div class="sidebar">
     <ul class="menu">
       <li><a href="#"><i class="fas fa-home"></i></a></li>
-      <li><a href="#"><i class="fas fa-calendar"></i></a></li>
+      <li><a href="calendar.php"><i class="fas fa-calendar"></i></a></li>
       <li>
-        <form action="logout.php" method="post">
+        <form action="logout.php" method="post" name="logout">
           <button type="submit" name="logoutBtn"><i class="fas fa-sign-out-alt"></i></button>
         </form>
       </li>

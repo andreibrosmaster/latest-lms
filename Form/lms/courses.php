@@ -15,6 +15,7 @@ $result = mysqli_query($conn, $query);
   <link rel="stylesheet" href="lms.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+  <link rel="stylesheet" a href="CSS/bootstrap.css"/>
   <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
@@ -50,68 +51,40 @@ $result = mysqli_query($conn, $query);
   <div class="functions">
         <!-- Create Function -->
         <div class="create">
-            <h2>Add Student</h2>
-            <form id="createForm" name="createForm" action="create.php" method="POST">
+            <h2>Create Course</h2>
+            <form id="createForm" name="createForm" action="connection.php" method="POST">
+                <label for="course_name">Course Name:</label>
+                <input type="text" id="course_name" name="course_name" required>
 
-           
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
 
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-
-                <label for="firstname">First Name</label>
-                <input type="text" id="firstname" name="firstname" required>
-
-                <label for="lastname">Last Name</label>
-                <input type="text" id="lastname" name="lastname" required>
-
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="email">Temporary Password</label>
-                <input type="text" id="password" name="password" required>
-
-                
-
-                <button type="submit" name="add">Add Student</button>
+                <button type="submit">Create Course</button>
             </form>
         </div>
 
         <!-- Edit Function -->
         <div class="edit">
-            <h2>Edit Student</h2>
+            <h2>Edit Course</h2>
             <form id="editForm" name="editForm" action="edit.php" method="POST">
+                <label for="edit_course_name">Course Name:</label>
+                <input type="text" id="edit_course_name" name="edit_course_name" required>
 
-            <label for="id">ID</label>
-                <input type="number" id="id" name="id" required>
+                <label for="edit_description">Description:</label>
+                <textarea id="edit_description" name="edit_description" required></textarea>
 
-                
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-
-                <label for="firstname">First Name</label>
-                <input type="text" id="firstname" name="firstname" required>
-
-                <label for="lastname">Last Name</label>
-                <input type="text" id="lastname" name="lastname" required>
-
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" required>
-
-                <label for="email">Change Password</label>
-                <input type="text" id="password" name="password" required>
-
-                <button type="submit" name="edit">Edit Data</button>
+                <button type="submit">Edit Course</button>
             </form>
         </div>
 
         <!-- Delete Function -->
         <div class="delete">
-            <h2>Delete Record</h2>
+            <h2>Delete Course</h2>
             <form id="deleteForm" name="deleteForm" action="delete.php" method="POST">
                 <label for="delete_course_id">Course ID:</label>
                 <input type="number" id="delete_course_id" name="delete_course_id" required>
 
-                <button type="submit" name="delete">Delete</button>
+                <button type="submit">Delete Course</button>
             </form>
         </div>
     </div>

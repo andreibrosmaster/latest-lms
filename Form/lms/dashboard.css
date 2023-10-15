@@ -1,9 +1,13 @@
+*{
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
 /* styles.css */
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 20px auto; /* Center the container horizontally and add margin for vertical spacing */
+    margin: 100px auto; /* Center the container horizontally and add margin for vertical spacing */
     max-width: 800px; /* Adjust the maximum width as needed */
 }
 
@@ -14,13 +18,25 @@
     padding: 10px; 
 }
 
-.create, .edit, .delete {
-    border: 1px solid #ccc;
+.create, .edit{
+    border: 1px solid #6e1717;
     padding: 20px;
     border-radius: 5px;
     width: calc(33.33% - 20px); /* Adjust the width as needed */
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     text-align: center; /* Center the content horizontally */
+}
+
+.delete{
+    border: 1px solid #6e1717;
+    padding: 20px;
+    border-radius: 20px;
+    width: calc(33.33% - 50px); /* Adjust the width as needed */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center the content horizontally */
+    width: 15%;
+    height: 60%;
+
 }
 
 .create, .edit {
@@ -34,14 +50,14 @@ h2 {
 
 label {
     display: block;
-    margin-bottom: 15px; /* Increase the margin for input labels */
+    margin-bottom: 7px; /* Increase the margin for input labels */
 }
 
 input[type="text"],
-textarea, input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px; /* Increase the margin between input fields and labels */
+textarea, input[type="number"], input[type="email"]{
+    width: 90%;
+    padding: 5px;
+    margin-bottom: 5px; /* Increase the margin between input fields and labels */
     border: 1px solid #ccc;
     border-radius: 3px;
 }
@@ -59,3 +75,69 @@ button:hover {
     background-color: crimson;
 }
 
+/*  */
+
+.container_table {
+  display: flex;
+  justify-content: center;
+  margin: 50px auto;
+  max-width: 800px;
+}
+
+.db-table {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.col {
+  flex: 1;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #f2f2f2;
+  padding: 1px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+table tr:first-child {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #e6e6e6;
+}
+
+
+  .bg-dark.text-white {
+    background-color: #343a40; /* Set the background color to a dark shade */
+    color: #ffffff; /* Set the text color to white */
+  }

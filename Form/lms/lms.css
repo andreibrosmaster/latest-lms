@@ -1,3 +1,8 @@
+*{
+  font-family: "Lucida Console", "Courier New", monospace !important;
+}
+
+
 body{
   background-color: #f2f2f2;
 }
@@ -22,7 +27,7 @@ body{
   }
   
   .user-greeting {
-    font-size: 18px; /* Adjust the font size as per your preference */
+    font-size: 30px; /* Adjust the font size as per your preference */
     margin-left: auto;
   }
   
@@ -60,7 +65,7 @@ body{
     color: white;
     text-decoration: none;
     width: 100%;
-    font-size: 24px; /* Adjust the font size as per your preference */
+    font-size: 30px; /* Adjust the font size as per your preference */
   }
   
   .menu li a:hover {
