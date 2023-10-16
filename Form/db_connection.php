@@ -10,13 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         $agree = isset($_POST['register_agree']) ? 1 : 0; // Checkbox value
 
         // Establish Connection
-        $db_host = "localhost"; // Change this to your database host
-        $db_user = "root";      // Change this to your database username
-        $db_pass = "";          // Change this to your database password
-        $db_name = "register";  // Change this to your database name
-
-        // Create a connection to the database
-        $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+        require_once('connection.php');
 
         // Check the connection
         if (mysqli_connect_errno()) {
@@ -57,13 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         $login_password = $_POST['login_password'];
 
         // Establish Connection
-        $db_host = "localhost"; // Change this to your database host
-        $db_user = "root";      // Change this to your database username
-        $db_pass = "";          // Change this to your database password
-        $db_name = "register";  // Change this to your database name
-
-        // Create a connection to the database
-        $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+        require_once('connection.php');
 
         // Check the connection
         if (mysqli_connect_errno()) {
@@ -74,6 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             $sql = "SELECT * FROM `users` WHERE username='$login_username' LIMIT 1";
             $login_result = mysqli_query($conn, $sql);
 
+
+
             if ($login_result && mysqli_num_rows($login_result) == 1) {
                 // User found, now check the password
                 $user_data = mysqli_fetch_assoc($login_result);
@@ -81,16 +71,22 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
                 if (password_verify($login_password, $stored_password)) {
                     // Successful login
-                    if ($user_data['username'] === 'superadmin') {
+                  $agree = $user_data['agree'];
 
-                        header("Location: lms/dashboard.php");
+                    if ($agree != 1) {
+                        echo "<script>alert('Account Deactivated'); window.location.href = 'index.php';</script>";
                         exit();
-                    } else{
-                        echo "Login Successful";
-                        header("Location: lms/lms.php");
-                        exit();
+                    } else {
+                        // Redirect the user based on their role
+                        if ($user_data['username'] === 'superadmin') {
+                            header("Location: lms/dashboard.php");
+                            exit();
+                        } else {
+                            echo "Login Successful";
+                            header("Location: lms/lms.php");
+                            exit();
+                        }
                     }
-                   
                 } else {
                     echo "<script>alert('Invalid password'); window.location.href = 'index.php';</script>";
                     exit();

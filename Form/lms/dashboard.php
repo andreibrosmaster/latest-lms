@@ -36,10 +36,10 @@ $result = mysqli_query($conn, $query);
   </div>
   <div class="sidebar">
     <ul class="menu">
-      <li><a href="#"><ion-icon name="home-outline"></ion-icon></a></li>
-      <li><a href="#"><ion-icon name="calendar-outline"></ion-icon></a></li>
+     
       <li><a href="dashboard.php"><ion-icon name="people-outline"></ion-icon></a></li>
       <li><a href="courses.php"><ion-icon name="book-outline"></ion-icon></a></li>
+      <li><a href="calendar.php"><ion-icon name="calendar-outline"></ion-icon></a></li>
       <li>
         <form action="logout.php" method="post">
           <button type="submit" name="logoutBtn"><ion-icon name="log-out-outline"></ion-icon></button>
@@ -126,11 +126,27 @@ $result = mysqli_query($conn, $query);
   <div class="delete" id="delete">
   <h2>Delete Record</h2>
   <form id="deleteForm" name="deleteForm" action="delete.php" method="POST">
-    <label for="delete_course_id">Course ID:</label>
-    <input type="number" id="delete_course_id" name="id" required> <!-- Change the name attribute to "id" -->
+    <label for="delete_course_id">Student ID:</label>
+    <input type="number" id="delete_course_id" name="id" required>
 
     <button type="submit" name="delete">Delete</button>
   </form>
+        </div>
+
+
+        <div class="status-box" id="update">
+      <h2>Status</h2>
+      <form id="status-update" name="status-form" action="update.php" method="POST">
+      <label for="status-id">Student ID:</label>
+      <input type="number" id="status-id" name="id" required>
+
+      <input type="radio" name="status" value="1"> Active
+      <br>
+      <br>
+<input type="radio" name="status" value="0"> Inactive
+  
+      <button type="submit" name="update">Update</button>
+      <form>
         </div>
   </div>
         
@@ -157,6 +173,7 @@ $result = mysqli_query($conn, $query);
                   <td> FIRST NAME</td>
                   <td> LAST NAME </td>
                   <td> EMAIL </td>
+                  <td> Status </td>
                 </tr>
                 <tr>
                 <?php
@@ -168,6 +185,8 @@ $result = mysqli_query($conn, $query);
               <td><?php echo $row['first_name'];  ?> </td>
               <td><?php echo $row['last_name'];  ?> </td>
               <td><?php echo $row['email'];  ?> </td>
+              <td style="color: <?php echo ($row['agree'] == 0) ? 'red' : 'inherit'; ?>">
+                <?php echo ($row['agree'] == 1) ? 'Active' : 'Inactive'; ?></td>
 
                 </tr>
               <?php

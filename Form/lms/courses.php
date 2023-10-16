@@ -36,10 +36,10 @@ $result = mysqli_query($conn, $query);
   </div>
   <div class="sidebar">
     <ul class="menu">
-      <li><a href="#"><ion-icon name="home-outline"></ion-icon></a></li>
-      <li><a href="#"><ion-icon name="calendar-outline"></ion-icon></a></li>
+      
       <li><a href="dashboard.php"><ion-icon name="people-outline"></ion-icon></a></li>
       <li><a href="courses.php"><ion-icon name="book-outline"></ion-icon></a></li>
+      <li><a href="calendar.php"><ion-icon name="calendar-outline"></ion-icon></a></li>
       <li>
         <form action="logout.php" method="post">
           <button type="submit" name="logoutBtn"><ion-icon name="log-out-outline"></ion-icon></button>
@@ -165,6 +165,6 @@ $result = mysqli_query($conn, $query);
     <!-- JavaScript -->
     <script src="lms.js"></script>
     <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
-    <script src="popup.js"></script>
+    <script src="popupv.js"></script>
 </body>
 </html>

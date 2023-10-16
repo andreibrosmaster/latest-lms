@@ -11,13 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         $image_path = 'C:/xampp/htdocs/webdev2/Index/Form/upload-img/' . $image; // Set the desired path to store the uploaded image
 
         // Establish Connection
-        $db_host = "localhost"; // Change this to your database host
-        $db_user = "root";      // Change this to your database username
-        $db_pass = "";          // Change this to your database password
-        $db_name = "register";  // Change this to your database name
-
-        // Create a connection to the database
-        $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+        require_once('connection.php');
 
         // Check the connection
         if (mysqli_connect_errno()) {
