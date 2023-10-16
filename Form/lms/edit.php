@@ -1,15 +1,8 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     if (isset($_POST['edit'])) {
-        // Edit code
-        $id = $_POST['id'];
-        $username = $_POST['username'];
-        $f_name = $_POST['firstname'];
-        $l_name = $_POST['lastname'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $agree = 1;
 
+        $id = $_POST['id'];
         // Establish Connection
         $db_host = "localhost"; // Change this to your database host
         $db_user = "root";      // Change this to your database username
@@ -24,9 +17,42 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             echo "Failed to connect!";
             exit();
         } else {
-            // Update user data in the database using a unique identifier, e.g., user ID
-            $sql = "UPDATE `users` SET username = '$username', first_name = '$f_name', last_name = '$l_name', email = '$email', password = '$password', agree = '$agree' WHERE id = '$id'";
+            // Construct the SQL query dynamically based on the checkboxes
+            $sql = "UPDATE `users` SET ";
+            $updateFields = array();
+
+            // Check if each field's corresponding checkbox is checked and add it to the updateFields array
+            if (isset($_POST['update-username'])) {
+                $username = $_POST['username'];
+                $updateFields[] = "username = '$username'";
+            }
+
+            if (isset($_POST['update-firstname'])) {
+                $f_name = $_POST['firstname'];
+                $updateFields[] = "first_name = '$f_name'";
+            }
+
+            if (isset($_POST['update-lastname'])) {
+                $l_name = $_POST['lastname'];
+                $updateFields[] = "last_name = '$l_name'";
+            }
+
+            if (isset($_POST['update-email'])) {
+                $email = $_POST['email'];
+                $updateFields[] = "email = '$email'";
+            }
+
+            if (isset($_POST['update-password'])) {
+                $password = $_POST['password'];
+                $updateFields[] = "password = '$password'";
+            }
+
+            // Join the updateFields array with commas
+            $sql .= implode(', ', $updateFields);
+            $sql .= " WHERE id = '$id'";
+
             $result = mysqli_query($conn, $sql);
+
             if ($result) {
                 echo '<script>window.location = "dashboard.php";</script>';
                 exit();
@@ -36,5 +62,4 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         }
     }
 }
-
 ?>

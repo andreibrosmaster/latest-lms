@@ -73,26 +73,30 @@ $result = mysqli_query($conn, $query);
 
         <!-- Edit Function -->
         <div class="edit">
-            <h2>Edit Course</h2>
-            <form id="editForm" name="editForm" action="course-edit.php" method="POST" enctype="multipart/form-data">
-            <label for="course-name">Course ID:</label>
-                <input type="number" id="course-name" name="course-id" required>
+    <h2>Edit Course</h2>
+    <form id="editForm" name="edit" action="course-edit.php" method="POST" enctype="multipart/form-data">
 
-            <label for="course-name">Course Name:</label>
-                <input type="text" id="course-name" name="course-name" required>
+        <label for="course-id">Course ID:</label>
+        <input type="number" id="course-id" name="id" required>
 
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
+        <label for="course-name">Course Name: <input type="checkbox" name="update-course-name" value="1"></label>
+        <input type="text" id="course-name" name="course-name">
 
-                <label for="course-link">Course Link:</label>
-                <input type="url" id="course-link" name="course-link" required>
+        <label for="description">Description: <input type="checkbox" name="update-description" value="1"></label>
+        <textarea id="description" name="description"></textarea>
 
-                <label for="image">Upload Image:</label>
-                <input type="file" id="image" name="image" accept="image/jpeg, image/png" required>
+        <label for="course-link">Course Link: <input type="checkbox" name="update-course-link" value="1"></label>
+        <input type="url" id="course-link" name="course-link">
 
-                <button type="submit" class="button-function" name="edit">Edit Course</button>
-            </form>
-        </div>
+        <label for="image">Upload Image: <input type="checkbox" name="update-image" value="1"></label>
+        <input type="file" id="image" name="image" accept="image/jpeg, image/png">
+
+        <button type="submit" class="button-function" name="edit">Edit Course</button>
+    </form>
+</div>
+
+
+
 
         <div class="delete-btn-function">
   <div class="button-delete">

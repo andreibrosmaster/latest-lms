@@ -83,32 +83,32 @@ $result = mysqli_query($conn, $query);
         </div>
 
         <!-- Edit Function -->
-        <div class="edit">
-            <h2>Edit Student</h2>
-            <form id="editForm" name="editForm" action="edit.php" method="POST">
+       <div class="edit">
+    <h2>Edit Student</h2>
+    <form id="editForm" name="editForm" action="edit.php" method="POST">
 
-            <label for="id">ID</label>
-                <input type="number" id="id" name="id" required>
+        <label for="id">ID:</label>
+        <input type="number" id="id" name="id" required>
 
-                
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+        <label for="username">Username: <input type="checkbox" name="update-username" value="1"></label>
+        <input type="text" id="username" name="username">
 
-                <label for="firstname">First Name</label>
-                <input type="text" id="firstname" name="firstname" required>
+        <label for="firstname">First Name: <input type="checkbox" name="update-firstname" value="1"></label>
+        <input type="text" id="firstname" name="firstname">
 
-                <label for="lastname">Last Name</label>
-                <input type="text" id="lastname" name="lastname" required>
+        <label for="lastname">Last Name: <input type="checkbox" name="update-lastname" value="1"></label>
+        <input type="text" id="lastname" name="lastname">
 
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" required>
+        <label for="email">Email: <input type="checkbox" name="update-email" value="1"></label>
+        <input type="email" id="email" name="email">
 
-                <label for="email">Change Password</label>
-                <input type="text" id="password" name="password" required>
+        <label for="password">Change Password: <input type="checkbox" name="update-password" value="1"></label>
+        <input type="text" id="password" name="password" >
 
-                <button type="submit" name="edit">Edit Data</button>
-            </form>
-        </div>
+        <button type="submit" name="edit">Edit Data</button>
+    </form>
+</div>
+
 
         <!-- Delete Function -->
 

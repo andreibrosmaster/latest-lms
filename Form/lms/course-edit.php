@@ -1,15 +1,8 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     if (isset($_POST['edit'])) {
         // Edit code
         $id = $_POST['id'];
-             $course_name = $_POST['course-name'];
-             $course_description = $_POST['description'];
-             $course_link = $_POST['course-link'];
-            
-             $image = $_FILES['image']['name']; // Get the filename of the uploaded image
-             $image_tmp = $_FILES['image']['tmp_name']; // Get the temporary location of the uploaded image
-             $image_path = 'C:/xampp/htdocs/webdev2/Index/Form/upload-img/' . $image; // Set the desired path to store the uploaded image
 
         // Establish Connection
         $db_host = "localhost"; // Change this to your database host
@@ -25,18 +18,46 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             echo "Failed to connect!";
             exit();
         } else {
-            // Update user data in the database using a unique identifier, e.g., user ID
-            $sql = "UPDATE `courses` SET course_name = '$course_name', course_description = '$course_description', link = '$course_link', image = '$image_path' WHERE id = '$id'";
+            // Construct the SQL query dynamically based on the checkboxes
+            $sql = "UPDATE courses SET ";
+            $updateFields = array();
+
+            // Check if each field's corresponding checkbox is checked and add it to the updateFields array
+            if (isset($_POST['update-course-name'])) {
+                $course_name = $_POST['course-name'];
+                $updateFields[] = "course_name = '$course_name'";
+            }
+
+            if (isset($_POST['update-description'])) {
+                $course_description = $_POST['description'];
+                $updateFields[] = "course_description = '$course_description'";
+            }
+
+            if (isset($_POST['update-course-link'])) {
+                $course_link = $_POST['course-link'];
+                $updateFields[] = "link = '$course_link'";
+            }
+
+            if (isset($_POST['update-image'])) {
+                $image = $_FILES['image']['name'];
+                $image_tmp = $_FILES['image']['tmp_name'];
+                $image_path = 'C:/xampp/htdocs/webdev2/Index/Form/upload-img/' . $image;
+                $updateFields[] = "image = '$image_path'";
+            }
+
+            // Join the updateFields array with commas and add the WHERE clause to identify the record
+            $sql .= implode(', ', $updateFields);
+            $sql .= " WHERE id = '$id'";
+
             $result = mysqli_query($conn, $sql);
+
             if ($result) {
-                echo '<script>window.location = "coursess.php";</script>';
+                echo '<script>window.location = "courses.php";</script>';
                 exit();
             } else {
                 die(mysqli_error($conn));
             }
         }
-        
     }
 }
-
 ?>
