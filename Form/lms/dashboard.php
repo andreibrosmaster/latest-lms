@@ -15,6 +15,7 @@ $result = mysqli_query($conn, $query);
   <link rel="stylesheet" href="lms.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
@@ -30,26 +31,31 @@ $result = mysqli_query($conn, $query);
 
 
     <div class="user-greeting">
-    <p>Hello, <span id="username">superadmin</span></p>
+    <p>Hello, <span id="username">Superadmin</span></p>
     </div>
   </div>
   <div class="sidebar">
     <ul class="menu">
-      <li><a href="#"><i class="fas fa-home"></i></a></li>
-      <li><a href="#"><i class="fas fa-calendar"></i></a></li>
+      <li><a href="#"><ion-icon name="home-outline"></ion-icon></a></li>
+      <li><a href="#"><ion-icon name="calendar-outline"></ion-icon></a></li>
+      <li><a href="dashboard.php"><ion-icon name="people-outline"></ion-icon></a></li>
+      <li><a href="courses.php"><ion-icon name="book-outline"></ion-icon></a></li>
       <li>
         <form action="logout.php" method="post">
-          <button type="submit" name="logoutBtn"><i class="fas fa-sign-out-alt"></i></button>
+          <button type="submit" name="logoutBtn"><ion-icon name="log-out-outline"></ion-icon></button>
         </form>
       </li>
     </ul>
   </div>
 
+
+ 
   <div class="container">
 
   <div class="functions">
-        <!-- Create Function -->
-        <div class="create">
+
+<!-- Create Function -->
+<div class="create">
             <h2>Add Student</h2>
             <form id="createForm" name="createForm" action="create.php" method="POST">
 
@@ -105,16 +111,33 @@ $result = mysqli_query($conn, $query);
         </div>
 
         <!-- Delete Function -->
-        <div class="delete">
-            <h2>Delete Record</h2>
-            <form id="deleteForm" name="deleteForm" action="delete.php" method="POST">
-                <label for="delete_course_id">Course ID:</label>
-                <input type="number" id="delete_course_id" name="delete_course_id" required>
 
-                <button type="submit" name="delete">Delete</button>
-            </form>
+
+
+
+        <!----DO NOT COPY---->
+  <div class="delete-btn-function">
+  <div class="button-delete">
+<button onclick="hideShow()">Show Delete</button>
+</div>
+
+  </div>
+  
+  <div class="delete" id="delete">
+  <h2>Delete Record</h2>
+  <form id="deleteForm" name="deleteForm" action="delete.php" method="POST">
+    <label for="delete_course_id">Course ID:</label>
+    <input type="number" id="delete_course_id" name="id" required> <!-- Change the name attribute to "id" -->
+
+    <button type="submit" name="delete">Delete</button>
+  </form>
         </div>
-    </div>
+  </div>
+        
+       
+      
+        
+
 </div>
 
 <div class="container_table">
@@ -164,5 +187,7 @@ $result = mysqli_query($conn, $query);
 
     <!-- JavaScript -->
     <script src="lms.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="popup.js"></script>
 </body>
 </html>

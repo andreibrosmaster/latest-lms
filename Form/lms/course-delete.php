@@ -16,16 +16,16 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             exit();
         } else {
             // Sanitize and validate the $id variable
-            $id = $_POST['id'];
+            $id = $_POST['id']; // Assuming the ID is passed as a hidden field in the form
 
             // Prepare the SQL statement using a prepared statement
-            $sql = "DELETE FROM users WHERE id = ?";
+            $sql = "DELETE FROM courses WHERE id = ?";
             $stmt = mysqli_prepare($conn, $sql);
             mysqli_stmt_bind_param($stmt, "i", $id);
 
             // Execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
-                echo '<script>window.location = "dashboard.php";</script>';
+                echo '<script>window.location = "courses.php";</script>';
                 exit();
             } else {
                 die(mysqli_error($conn));
