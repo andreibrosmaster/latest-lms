@@ -36,7 +36,8 @@ $result = mysqli_query($conn, $query);
   </div>
   <div class="sidebar">
     <ul class="menu">
-      
+   <li><a href=""><ion-icon name="easel-outline"></ion-icon></a></li> 
+    <li><a href="teacher.php"><ion-icon name="accessibility-outline"></ion-icon></a></li>
       <li><a href="dashboard.php"><ion-icon name="people-outline"></ion-icon></a></li>
       <li><a href="courses.php"><ion-icon name="book-outline"></ion-icon></a></li>
       <li><a href="calendar.php"><ion-icon name="calendar-outline"></ion-icon></a></li>

@@ -5,6 +5,10 @@ $query = "SELECT * FROM users";
 $result = mysqli_query($conn, $query);
 
 
+$sql = "SELECT * FROM teachers";
+$result_teach = mysqli_query($conn, $sql);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +40,8 @@ $result = mysqli_query($conn, $query);
   </div>
   <div class="sidebar">
     <ul class="menu">
-     
+    <li><a href=""><ion-icon name="easel-outline"></ion-icon></a></li> 
+    <li><a href="teacher.php"><ion-icon name="accessibility-outline"></ion-icon></a></li>
       <li><a href="dashboard.php"><ion-icon name="people-outline"></ion-icon></a></li>
       <li><a href="courses.php"><ion-icon name="book-outline"></ion-icon></a></li>
       <li><a href="calendar.php"><ion-icon name="calendar-outline"></ion-icon></a></li>
@@ -202,11 +207,58 @@ $result = mysqli_query($conn, $query);
   </div>
 </div>
 
+
+<div class="container_table">
+  <div class="db-table">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="display-6">TEACHER DATABASE</h2>
+          </div>
+          <div class="card-body">
+            <table>
+              <tbody>
+                <tr class="bg-dark text-white">
+                  <td> ID </td>
+                  <td> USERNAME</td>
+                  <td> FIRST NAME</td>
+                  <td> LAST NAME </td>
+                  <td> EMAIL </td>
+                  <td> Status </td>
+                </tr>
+                <tr>
+                <?php
+                while($row = mysqli_fetch_assoc($result_teach))
+                {
+                  ?>
+              <td><?php echo $row['id'];  ?> </td>
+              <td><?php echo $row['username'];  ?> </td>
+              <td><?php echo $row['first_name'];  ?> </td>
+              <td><?php echo $row['last_name'];  ?> </td>
+              <td><?php echo $row['email'];  ?> </td>
+              <td style="color: <?php echo ($row['agree'] == 0) ? 'red' : 'inherit'; ?>">
+                <?php echo ($row['agree'] == 1) ? 'Active' : 'Inactive'; ?></td>
+
+                </tr>
+              <?php
+                }
+                ?>
+               
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   
 
     <!-- JavaScript -->
     <script src="lms.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
     <script src="popup.js"></script>
 </body>
 </html>
