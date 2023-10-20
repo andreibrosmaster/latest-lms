@@ -13,7 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         } else {
             $status = $_POST['status'];
 
-            $update_query = "UPDATE `users` SET agree = '$status' WHERE id = '$id'";
+            $update_query = "UPDATE `users` SET agree = '$status' WHERE id = '$id'
+            UNION
+            UPDATE teachers` SET agree = '$status' WHERE id = '$id'
+            ";
             $result = mysqli_query($conn, $update_query);
 
             if ($result) {
