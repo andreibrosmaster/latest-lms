@@ -31,7 +31,21 @@ https://templatemo.com/tm-569-edu-meeting
   </head>
 
 <body>
+<?php
+        require_once('Form/connection.php');
 
+        $sql = "SELECT * FROM homepage WHERE id = 2;";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        // Display the 'textarea' and 'video' columns
+        $textarea = $row['textarea'];
+        $video = $row['video'];
+
+    }}
+
+    ?>
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky">
       <div class="container">
@@ -78,7 +92,7 @@ https://templatemo.com/tm-569-edu-meeting
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
       <video autoplay muted loop id="bg-video">
-          <source src="assets/images/course-video.mp4" type="video/mp4" />
+          <source src="<?php echo "$video" ?>" type="video/mp4" />
       </video>
 
       <div class="video-overlay header-text">
@@ -88,9 +102,7 @@ https://templatemo.com/tm-569-edu-meeting
                 <div class="caption">
                   <h6>Welcome to your,</h6>
                   <h2><font color ="#FF0800">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NICE </font>CHOICE!</h2>
-                  <p>“Welcome to NCU, a cutting-edge institution at the forefront of AI education and innovation.
-                     Our school is dedicated to shaping the future of education by harnessing the power of artificial intelligence to foster creativity, 
-                    critical thinking, and interdisciplinary learning.”</p></a>
+                  <p><?php echo "$textarea" ?></p>
               <div class="main-button-red">
                 <a href="Form/index.php" class="page-link">Access Learning Management System</a>
               </div>
