@@ -105,3 +105,12 @@ body{
     font-size: 60px; /* Adjust the font size as per your preference */
   }
   
+  .custom-dialog{
+  
+      position: fixed;
+      top: 25%;
+
+      transform: translate(-50%, -50%);
+
+    
+  }
