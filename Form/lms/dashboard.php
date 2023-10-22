@@ -40,7 +40,7 @@ $result_teach = mysqli_query($conn, $sql);
   </div>
   <div class="sidebar">
     <ul class="menu">
-    <li><a href=""><ion-icon name="easel-outline"></ion-icon></a></li> 
+    <li><a href="homepage-db.php"><ion-icon name="easel-outline"></ion-icon></a></li> 
     <li><a href="teacher.php"><ion-icon name="accessibility-outline"></ion-icon></a></li>
       <li><a href="dashboard.php"><ion-icon name="people-outline"></ion-icon></a></li>
       <li><a href="courses.php"><ion-icon name="book-outline"></ion-icon></a></li>
@@ -61,7 +61,7 @@ $result_teach = mysqli_query($conn, $sql);
 
 <!-- Create Function -->
 <div class="create">
-            <h2>Add Student</h2>
+            <h2>Add Record</h2>
             <form id="createForm" name="createForm" action="create.php" method="POST">
 
            
@@ -89,7 +89,7 @@ $result_teach = mysqli_query($conn, $sql);
 
         <!-- Edit Function -->
        <div class="edit">
-    <h2>Edit Student</h2>
+    <h2>Edit Record</h2>
     <form id="editForm" name="editForm" action="edit.php" method="POST">
 
         <label for="id">ID:</label>
@@ -131,7 +131,7 @@ $result_teach = mysqli_query($conn, $sql);
   <div class="delete" id="delete">
   <h2>Delete Record</h2>
   <form id="deleteForm" name="deleteForm" action="delete.php" method="POST">
-    <label for="delete_course_id">Student ID:</label>
+    <label for="delete_course_id">ID Number</label>
     <input type="number" id="delete_course_id" name="id" required>
 
     <button type="submit" name="delete">Delete</button>

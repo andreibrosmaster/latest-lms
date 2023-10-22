@@ -2,9 +2,8 @@
   font-family: "Lucida Console", "Courier New", monospace !important;
 }
 
-
 body{
-  background-color: #f2f2f2;
+  background-color: #eff3f6 !important;
 }
 
 .header {
@@ -13,7 +12,7 @@ body{
     left: 80px; /* Adjust the left position to match the width of the sidebar */
     width: calc(100% - 80px); /* Adjust the width to fill the remaining space */
     height: 80px; /* Adjust the height as per your preference */
-    background-color:  #E1D9D1;
+    background-color:  #fff;
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -51,7 +50,7 @@ body{
   }
   
   .menu li {
-    margin-top: 80px;
+    margin-top: 40px;
     display: flex;
     align-items: center;
     justify-content: center;

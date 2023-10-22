@@ -9,7 +9,7 @@ if(isset($_POST["create"])){
     $course_link = $_POST['course-link'];
 
     if($_FILES["image"]["error"] === 4){
-        echo "<script> aler('Image Does Not Exist'); </script>";
+        echo "<script> alert('Image Does Not Exist'); </script>";
     } else{
         $fileName = $_FILES["image"]["name"];
     }
