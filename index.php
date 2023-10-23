@@ -34,9 +34,9 @@ https://templatemo.com/tm-569-edu-meeting
 <?php
         require_once('Form/connection.php');
 
-        $sql = "SELECT * FROM homepage WHERE id = 2;";
+        $sql = "SELECT * FROM homepage WHERE id = 1;";
 $result = mysqli_query($conn, $sql);
-
+$textarea = '';
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         // Display the 'textarea' and 'video' columns
