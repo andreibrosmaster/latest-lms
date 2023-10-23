@@ -4,7 +4,8 @@ require_once('connection.php');
 $query = "SELECT * FROM course_content";
 $result = mysqli_query($conn, $query);
 
-
+$sql = "SELECT * FROM courses";
+$res = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,15 +56,13 @@ $result = mysqli_query($conn, $query);
         <!-- Create Function -->
         <div class="create">
             <h2>Create Course</h2>
-            <form id="createForm" name="createForm" action="course-create.php" method="POST" enctype="multipart/form-data">
+            <form id="createForm" name="createForm" action="teacher-create.php" method="POST" enctype="multipart/form-data">
                 <label for="course-name">Course Name:</label>
-                <input type="text" id="course-name" name="course-name" required>
+                <input type="text" id="course-name" name="course_name" required>
 
                 <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
+                <textarea id="description" name="course_content" required></textarea>
 
-                <label for="course-link">Course Link:</label>
-                <input type="url" id="course-link" name="course-link" required>
 
            
                 <button type="submit" class="button-function" name="create">Create Course</button>
@@ -121,7 +120,7 @@ $result = mysqli_query($conn, $query);
       <div class="col">
         <div class="card">
           <div class="card-header">
-            <h2 class="display-6">COURSES DATABASE</h2>
+            <h2 class="display-6">COURSES CONTENT</h2>
           </div>
           <div class="card-body">
             <table>
@@ -141,6 +140,50 @@ $result = mysqli_query($conn, $query);
               <td><?php echo $row['course_title'];  ?> </td>
               <td><?php echo $row['course_content'];  ?> </td>
         
+
+                </tr>
+              <?php
+                }
+                ?>
+               
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container_table">
+  <div class="db-table">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="display-6">COURSES DATABASE</h2>
+           <center><h3 class="display-6">For Reference</h3></center> 
+          </div>
+          <div class="card-body">
+            <table>
+              <tbody>
+                <tr class="bg-dark text-white">
+                  <td> ID </td>
+                  <td> COURSE NAME</td>
+                  <td> DESCRIPTION</td>
+                  <td> LINK</td>
+                  <td> IMAGE </td>
+                </tr>
+                <tr>
+                <?php
+                while($row = mysqli_fetch_assoc($res))
+                {
+                  ?>
+              <td><?php echo $row['id'];  ?> </td>
+              <td><?php echo $row['course_name'];  ?> </td>
+              <td><?php echo $row['course_description'];  ?> </td>
+              <td><?php echo $row['link'];  ?> </td>
+              <td><?php echo $row['image'];  ?> </td>
 
                 </tr>
               <?php

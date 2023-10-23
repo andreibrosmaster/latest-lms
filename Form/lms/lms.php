@@ -68,7 +68,7 @@ $courses = mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
           echo '<div class="box-content">';
           echo '<h2 id="courseName1">' . $course['course_name'] . '</h2>';
-          echo '<p style="font-size: 12px;"> ' . strtolower($course['course_name']) . '.</p>';
+          echo '<p style="font-size: 12px;"> ' . strtolower($course['course_description']) . '.</p>';
           echo '</div>';
           echo '</div>';
       }
